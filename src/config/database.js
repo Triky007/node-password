@@ -1,4 +1,4 @@
 module.exports = {
 	//'url': 'mongodb://localhost/nodelogin'
-	'url': 'mongodb://<dbuser>:<dbpassword>@ds347367.mlab.com:47367/heroku_8vmj0wbf'
+	'url': 'mongodb://ds247637.mlab.com:47637/heroku_jb63dp1z'
 };
