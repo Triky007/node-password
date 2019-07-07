@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Login Triky</title>
+        <% include partials/head %>
+        <% include partials/navbar %>
+	</head>
+	<body>
+		<form method="post">
+
+            <div>
+                <center><h2>Datos de taller</h2></center>
+                <hr>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                              <label for="cliente">Cliente:</label>
+                              <input class="form-control" type="text" id="nombreCliente" name="nombreCliente" size="6" value="<?php echo $nombreCliente ?>"/>
+                            </div>
+                            <div class="form-group">
+                              <label for="email">EMail:</label>
+                              <input class="form-control" type="email" id="emailCliente" name="emailCliente" size="6" value="<?php echo $emailCliente ?>"/>
+                            </div>
+                            <hr>
+                            <div class="form-group">
+                              <label for="formatoPlancha">Formato de Plancha:</label>
+                              <select class="form-control" id="formatoPlancha" name="formatoPlancha">
+                                <option <?php if ($formatoPlancha == "1030x790" ) echo 'selected' ; ?> value="1030x790" >1030x790  B1</option>
+                                <option <?php if ($formatoPlancha == "1030x800" ) echo 'selected' ; ?> value="1030x800" >1030x800  B1</option>
+                                <option <?php if ($formatoPlancha == "1050x795" ) echo 'selected' ; ?> value="1050x795" >1050x795  B1</option>
+                                <option <?php if ($formatoPlancha == "1060x800" ) echo 'selected' ; ?> value="1060x800" >1060x800  B1</option>
+                                <option <?php if ($formatoPlancha == "1430x1140") echo 'selected' ; ?> value="1430x1140" >1430x1140 F6</option>
+                                <option <?php if ($formatoPlancha == "1600x1325") echo 'selected' ; ?> value="1600x1325" >1600x1325 7B</option>
+                                <option <?php if ($formatoPlancha == "0745x605") echo 'selected' ; ?> value="0745x605" >0745x605 B2</option>
+                              </select>
+                            </div>
+                            <div class="form-inline">
+                              <label for="planchasAnuales">M2 de Planchas Anuales:</label>
+                              <input class="form-control" type="text" id="metrosPlanchaAnuales" name="metrosPlanchaAnuales" size="6" value="<?php echo $metrosPlanchaAnuales ?>"/>
+                              <label for="numeroMaquinas">Número de Máquinas</label>
+                              <input class="form-control" type="text" id="numeroMaquinas" name="numeroMaquinas" size="6" value="<?php echo $numeroMaquinas ?>"/>
+                            </div>
+                            <br>
+    
+                            <div class="form-group">
+                              <label for="precioM2Plancha">Precio M2 Plancha:</label>
+                              <input class="form-control" type="text" id="precioM2Plancha" name="precioM2Plancha" size="6" value="<?php echo $precioM2Plancha ?>"/>
+                            </div>
+                                <h4>Maquina Formato <?php echo ($formatoMaquinaOffset); ?></h4>
+                                <h4>Planchas <?php echo ($consumoAnualPlanchas);?></h4>
+                                <h4>Precio por plancha <?php echo ($precioPorPlanchaCliente);?>€</h4>
+                            <hr>
+                            <div>
+                              <label for="clicksDigitales">Digital (Clicks SRA3 Mensuales):</label>
+                              <input type="text" class="form-control" id="clicksDigitales" name="clicksDigitales"  value="<?php echo $clicksDigitales ?>">
+                            </div><hr>
+                        </div>
+                        <div class="col-md-6">
+                        </div>
+                    </div>
+                    
+                </div>
+                <hr>
+                <button type="submit" name="boton" value="=" class="btn btn-primary">Guardar</button>
+            </div>	
+        </form>	
+	</body>
+</html>
