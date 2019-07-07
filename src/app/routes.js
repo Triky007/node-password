@@ -34,10 +34,18 @@ module.exports = (app, passport) => {
 		});
 	});
 
+	app.get('/cliente', isLoggedIn, (req, res) => {
+		res.render('cliente', {
+			user: req.user
+		});
+	});
+
 	app.get('/logout', (req, res) =>{
 		req.logout();
 		res.redirect('/');
 	});
+
+	
 
 };
 
