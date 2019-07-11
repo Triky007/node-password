@@ -40,6 +40,12 @@ module.exports = (app, passport) => {
 		});
 	});
 
+	app.get('/offset', isLoggedIn, (req, res) => {
+		res.render('offset', {
+			user: req.user
+		});
+	});
+
 	app.get('/logout', (req, res) =>{
 		req.logout();
 		res.redirect('/');

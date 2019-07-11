@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Login Triky</title>
+        <% include partials/head %>
+        <% include partials/navbar %>
+	</head>
+	<body>
+      <form method="post">
+        <div>
+            <center><h2>Calculos Máquina Offset <?php echo $formatoMaquinaOffset?></h2></center></div>
+          <hr>
+            <div class="container">
+              <div class="row">
+    
+            <div class="col-md-5">
+              <!-- Papel -->
+              <h3 class="text-primary">Formato de Máquina <b class="text-danger"><?php echo $formatoMaquinaOffset?></b></h3>
+              <h4 class="text-primary">Papel Ancho <b><?php echo $anchoPapelB1?> mm</b> x Alto <b><?php echo $altoPapelB1?> mm</b></h4>
+              <h4 class="text-primary">Número de pliegos, <b><input class="text-danger" type="text" name="pliegosOffset" size="6" value="<?php echo $pliegosOffset ?>"/></b>pliegos/<?php echo $formatoMaquinaOffset?></h4>
+              <h4 class="text-primary">Cobertura de tinta(%) <select name="cobertura" class="text-danger">    
+                                  <option class="text-danger" <?php if ($cobertura == "baja" ) echo 'selected' ; ?> value="baja" >Baja</option>
+                                  <option class="text-danger" <?php if ($cobertura == "media" ) echo 'selected' ; ?> value="media">Media</option>
+                                  <option class="text-danger" <?php if ($cobertura == "alta" ) echo 'selected' ; ?> value="alta">Alta</option>
+                            </select></h4>
+              <hr>
+    <!-- Prueba de Boton emergente de consumibles -->
+      
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Consumibles</button>
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h3 class="modal-title">Consumibles</h3>
+                </div>
+                <div class="modal-body">
+                    <p>
+                    <h4 class="text-primary"><u>Planchas</u></h4>	 
+                <h4 class="text-primary">Precio por plancha <input class="text-danger" type="text" name="precioPlanchaB1" size="4" value="<?php echo $precioPlanchaB1 ?>"/> Euros</h4>
+                <h4 class="text-primary">Número de planchas <input class="text-danger" type="text" name="planchas" size="2" value="<?php echo $planchas ?>"/></h4>
+                <h5 class="text-primary">Precio total de las planchas, <b class="text-success"><?php echo $precioTotalPlanchasB1; ?></b> Euros</h5>
+                <!-- Boton Tinta --><hr>
+                <h4 class="text-primary"><u>Tinta</u></h4>
+                <h4 class="text-primary">Precio de Tinta(offset), <input class="text-danger" type="text" name="precioTintaOffset" size="4" value="<?php echo $precioTintaOffset ?>"/> Euros</h4>
+                <h5 class="text-primary">Rendimiento de la Tinta, <b class="text-warning"><?php echo $rendimientoTintaOffset;?></b> m2 por kg</h5>
+                <h5 class="text-primary">Precio de Tinta Usada, <b class="text-success"><?php echo number_format($precioTintaUsadaOffset,2); ?></b> Euros</h5>
+              </p>
+                </div>
+                <div class="modal-footer">
+                  <h3 class="text-primary">TOTAL CONSUMIBLES <b class="text-success"><?php echo number_format(($precioTotalPlanchasB1+$precioTintaUsadaOffset),2); ?></b> Euros (CMYK 4/0)</h3>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+      
+    <!-- FIN de Boton emergente de mantenimientos/extras -->
+    
+    
+    <!-- Boton emergente de PAPEL -->
+    
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal2">Papel</button>
+          <!-- Modal -->
+          <div class="modal fade" id="myModal2" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h3 class="modal-title">Papel <input class="text-danger" type="text" name="gramaje_papel" size="8" value="<?php echo $gramaje_papel ?>"/> gramos</h3>
+                </div>
+                <div class="modal-body">
+                    <p>
+                      <h4 class="text-primary">Papel Trabajo <b class="text-warning"><?php echo $pliegosOffset; ?></b> pliegos <?php echo $formatoMaquinaOffset?></h4>
+                    <h4 class="text-primary">Papel Maculatura <input class="text-danger" type="text" name="maculaturaOffset" size="10" value="<?php echo $maculaturaOffset ?>"/> pliegos <?php echo $formatoMaquinaOffset?></h4>
+                    <h4 class="text-primary">Papel Perdido <input class="text-danger" type="text" name="perdidoOffset" size="10" value="<?php echo $perdidoOffset ?>"/> pliegos <?php echo $formatoMaquinaOffset?></h4>
+                <h4 class="text-primary">Total de Pliegos Impresos <b class="text-warning"><?php echo $totalPliegosOffset; ?></b> pliegos <?php echo $formatoMaquinaOffset?></h4>
+                <hr>
+                <h4 class="text-primary">Coste Papel Trabajo <b class="text-success"><?php echo number_format($precioPapelImpresoOffset,2); ?></b> Euros</h4>
+                <h4 class="text-primary">Coste Maculatura, <b class="text-success"><?php echo number_format($precioMaculaturaOffset,2); ?></b> Euros</h4>
+                <h4 class="text-primary">Coste Perdido, <b class="text-success"><?php echo number_format($precioPerdidoOffset,2); ?></b> Euros</h4>
+                    
+              </p>
+                </div>
+                <div class="modal-footer">
+                  <h3 class="text-primary">Total Papel, <b class="text-success"><?php echo number_format($precioTotalPapelOffset,2); ?></b> Euros</h3>
+                  
+                </div>
+              </div>
+              
+            </div>
+          </div>
+    
+    <!-- Fin Boton emergente de PAPEL -->
+    
+              
+    <!-- Boton emergente de MANTENIMIENTOS/EXTRAS -->
+        <!-- Trigger the modal with a button -->
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal3">Extras</button>
+          <!-- Modal -->
+          <div class="modal fade" id="myModal3" role="dialog">
+            <div class="modal-dialog modal-lg">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h3 class="modal-title">EXTRAS para <?php echo round($consumoAnualPlanchasXMaquina,0) ?> planchas por máquina</h3>
+                  <h4 class="modal-title">Total <input class="text-danger" type="text" name="consumoAnualPlanchas" size="8" value="<?php echo $consumoAnualPlanchas ?>"/> planchas anuales</h4>
+                </div>
+    
+                <div class="modal-body">
+                    <div class="container">
+                <div class="row">
+              <div class="col-md-3">
+                <h3 class="text-primary"><u>Extras Prensa</u></h3>
+                      <!-- Solucion de Mojado -->
+                      <h4 class="text-danger" href="#" data-toggle="popover" title="Solucion de Mojado" data-placement="left" data-content="Calculado por plancha por cada máquina">Solucion de Mojado</h4>
+                    <h5 class="text-primary">Coste Anual <b class="text-success"> <?php echo number_format($precioAnualSolucionMojado,2);?></b> Euros/Año</h5>
+                    <h5 class="text-primary">Coste por Plancha <b class="text-success"> <?php echo number_format($precioPPSolucionMojado,2);?></b> Euros/Plancha</h5>
+                  
+                    <!-- Limpiador -->
+                    <h4 class="text-danger" href="#" data-toggle="popover" title="Limpiador" data-placement="left" data-content="Calculado por plancha por cada máquina">Limpiador</h4>
+                    <h5 class="text-primary">Coste Anual <b class="text-success"> <?php echo number_format($precioAnualLimpiador,2);?></b> Euros/Año</h5>
+                    <h5 class="text-primary">Coste por Plancha <b class="text-success"> <?php echo number_format($precioPPLimpiador,2);?></b> Euros/Plancha</h5>
+                  
+                    <!-- Cauchos -->
+                    <h4 class="text-danger" href="#" data-toggle="popover" title="Caucho" data-placement="left" data-content="Explicacion de cauchos">Cauchos (1 juego al mes)</h4>
+                    <h5 class="text-primary">Coste Anual <b class="text-success"> <?php echo number_format($precioAnualCauchos,2);?></b> Euros/Año</h5>
+                    <h5 class="text-primary">Coste por Plancha <b class="text-success"> <?php echo number_format($precioPPCauchos,2);?></b> Euros/Plancha</h5>
+                  
+                    <!-- Sontara -->
+                    <h4 class="text-danger" href="#" data-toggle="popover" title="Sontara" data-placement="left" data-content="Explicacion de telas limpiadoras">Sontara (rollo 500m)</h4>
+                    <h5 class="text-primary">Coste Anual <b class="text-success"> <?php echo number_format($precioAnualSontara,2);?></b> Euros/Año</h5>
+                    <h5 class="text-primary">Coste por Plancha <b class="text-success"> <?php echo number_format($precioPPSontara,2);?></b> Euros/Plancha</h5>
+                
+                    <!-- Baterias -->
+                    <h4 class="text-danger" href="#" data-toggle="popover" title="Baterias" data-placement="left" data-content="Explicacion de cambio de baterias">Baterias (1 Cambio Anual)</h4>
+                    <h5 class="text-primary">Coste Anual <b class="text-success"> <?php echo number_format($precioAnualBaterias,2);?></b> Euros/Año</h5>
+                    <h5 class="text-primary">Coste por Plancha <b class="text-success"> <?php echo number_format($precioPPBaterias,2);?></b> Euros/Plancha</h5>
+                    <!-- Mantenimientos/Piezas -->
+                    <h4 class="text-danger" href="#" data-toggle="popover" title="Mantenimientos" data-placement="left" data-content="Explicacion de mantenimientos y cambios de piezas">Mantenimientos/Piezas</h4>
+                    <h5 class="text-primary">Coste Anual <b class="text-success"> <?php echo number_format($precioAnualMantenimiento,2);?></b> Euros/Año</h5>
+                    <h5 class="text-primary">Coste por Plancha <b class="text-success"> <?php echo number_format($precioPPMantenimiento,2);?></b> Euros/Plancha</h5>
+    
+                </div>
+    
+                <div class="col-md-3">
+                  <h3 class="text-primary"><u>Extras CTP</u></h3>
+                <!-- CTP -->
+                    <h4 class="text-danger" href="#" data-toggle="popover" title="Amortizacion CTP" data-placement="left" data-content="Explicacion de amortizacion de CTP para todas las maquinas">CTP (Amortizacion)</h4>
+                    <h5 class="text-primary">Coste Anual <b class="text-success"> <?php echo number_format($precioAnualCTP,2);?></b> Euros/Año</h5>
+                    <h5 class="text-primary">Coste por Plancha <b class="text-success"> <?php echo number_format($precioPPCTP,2);?></b> Euros/Plancha</h5>
+                    <!-- Mantenimiento CTP -->
+                    <h4 class="text-danger" href="#" data-toggle="popover" title="Mantenimiento CTP" data-placement="left" data-content="Explicacion de Mantenimiento CTP para todas las maquinas">Mantenimiento CTP</h4>
+                    <h5 class="text-primary">Coste Anual <b class="text-success"> <?php echo number_format($precioMantenimientoCTP,2);?></b> Euros/Año</h5>
+                    <h5 class="text-primary">Coste por Plancha <b class="text-success"> <?php echo number_format($precioPPMantenimientoCTP,2);?></b> Euros/Plancha</h5>
+                    <!-- Coste Electrico CTP -->
+                    <h4 class="text-danger" href="#" data-toggle="popover" title="Coste Electrico CTP" data-placement="left" data-content="Explicacion de Coste Electrico CTP para todas las maquinas">Consumo Electrico CTP</h4>
+                    <h5 class="text-primary">Coste Anual <b class="text-success"> <?php echo number_format($precioElectricoCTP,2);?></b> Euros/Año</h5>
+                    <h5 class="text-primary">Coste por Plancha <b class="text-success"> <?php echo number_format($precioPPElectricoCTP,2);?></b> Euros/Plancha</h5>
+                    <!-- Operario CTP -->
+                    <h4 class="text-danger" href="#" data-toggle="popover" title="Operario CTP" data-placement="left" data-content="25% del coste anual del operario CTP(preimpresion)">Operario CTP</h4>
+                    <h5 class="text-primary">Coste Anual <b class="text-success"> <?php echo number_format($precioOperario,2);?></b> Euros/Año</h5>
+                    <h5 class="text-primary">Coste por Plancha <b class="text-success"> <?php echo number_format($precioPPOperario,2);?></b> Euros/Plancha</h5>
+                </div>
+                <div class="col-md-3">
+                  <h3 class="text-primary"><u>Otros Extras</u></h3>
+                    <!-- Reciclaje -->
+                    <h4 class="text-danger" href="#" data-toggle="popover" title="Reciclaje" data-placement="left" data-content="Gasto anual en reciclaje en maquina offset y CTP">Reciclaje Residuos</h4>
+                    <h5 class="text-primary">Coste Anual <b class="text-success"> <?php echo number_format($precioReciclaje,2);?></b> Euros/Año</h5>
+                    <h5 class="text-primary">Coste por Plancha <b class="text-success"> <?php echo number_format($precioPPReciclaje,2);?></b> Euros/Plancha</h5>
+                    <!-- Pruebas Color -->
+                    <h4 class="text-danger" href="#" data-toggle="popover" title="Ploters y Pruebas Color" data-placement="left" data-content="Gastos anuales en papel, tinta, software y ploters. Clicks digitales">Pruebas Color</h4>
+                    <h5 class="text-primary">Coste Anual <b class="text-success"> <?php echo number_format($precioAnualPruebasColor,2);?></b> Euros/Año</h5>
+                    <h5 class="text-primary">Coste por Plancha <b class="text-success"> <?php echo number_format($precioPPPruebasColor,2);?></b> Euros/Plancha</h5>
+                    <!-- Repeticiones/Errores -->
+                    <h4 class="text-danger" href="#" data-toggle="popover" title="Repeticiones/Errores" data-placement="left" data-content="Repeticiones de planchas, trabajos, problemas de preimpresion detectados durante la tirada, estabilidad de color...">Repeticiones/Errores</h4>
+                    <h5 class="text-primary">Media Anual <b class="text-success"> <?php echo number_format($porcentajeRepeticiones,2);?></b> %/Anual</h5>
+                    <h5 class="text-primary">Coste por Plancha <b class="text-success"> <?php echo number_format($precioPPRepeticiones,2);?></b> Euros/Plancha</h5>
+                    <!-- Retorno por Aluminio -->
+                    <h3 class="text-success" href="#" data-toggle="popover" title="Retorno Aluminio" data-placement="left" data-content="Repeticiones de planchas, trabajos, problemas de preimpresion detectados durante la tirada, estabilidad de color...">Retorno Aluminio</h3>
+                    <h5 class="text-primary">Reciclaje <b class="text-success"> <?php echo number_format($precioPPAluminio,2);?></b> Euros/Plancha</h5>
+                    <!-- Ajuste/Otros (por plancha) -->
+                    <hr>
+                    <h4 class="text-danger" href="#" data-toggle="popover" title="Ajustes/Otros" data-placement="left" data-content="Otros elementos no comunes (alcohol,polvo antimaculante, trapos, quimicos... y ajustes de valores no correctos.">Ajustes</h4>
+                    <h5 class="text-primary">Ajuste/Otros <input type="text" name="ajusteOtrosExtras" size="4" value="<?php echo $ajusteOtrosExtras ?>"/> Euros</h5>
+                    <h5 class="text-primary">Total Ajuste <b class="text-success"> <?php echo number_format(($ajustePPOtrosExtras),2);?></b> Euros/Plancha</h5>
+              </div>
+              
+                </div>
+                </div>
+            </div>
+                <div class="modal-footer">
+    
+                  <h4 class="text-primary">Total por Plancha <b class="text-success"> <?php echo number_format($precioPPTotalExtras,2);?></b> Euros/Plancha</h4>
+              <h3 class="text-primary">Total por Arranque <b class="text-success"> <?php echo number_format($precioTotalExtras,2);?></b> Euros CMYK</h3>
+                  
+                </div>
+              
+                  
+    
+              </div>
+    
+            </div>
+          </div>
+      
+    <!-- Fin de Boton emergente de mantenimientos/extras -->
+    <hr>
+    <!-- Costes Productivos -->
+          <table class="table table-striped" >
+            <tr>
+              <td>Coste Planchas</td><td align="right"><b class="text-success"><?php echo number_format($precioTotalPlanchasB1,2); ?></b> Euros</td>
+            </tr>
+            <tr>
+              <td>Coste Tinta</td><td align="right"><b class="text-success"><?php echo number_format($precioTintaUsadaOffset,2); ?></b> Euros</td>
+            </tr>
+            <tr>
+              <td>Coste Papel</td><td align="right"><b class="text-success"><?php echo number_format($precioTotalPapelOffset,2); ?></b> Euros</td>
+            </tr>
+            <tr>
+              <td>Coste Extras</td><td align="right"><b class="text-success"><?php echo number_format($precioTotalExtras,2); ?></b> Euros</td>
+            </tr>
+          </table>
+              
+              <h3 class="text-primary">COSTE MATERIAL <b class="text-success"><?php echo number_format($costeMateriaPrimaOffset,2); ?></b> Euros</h3>
+          </div> <!-- !!!!!!!!!!!!!!! Buscar Origen !!!!!!!!!!!!!! -->
+    
+              <div class="col-md-2"></div>
+    
+              <div class="col-md-5">
+                <!-- Tiempos -->
+                <h3 class="text-primary">Tiempo de Produccion</h4>
+                <h4 class="text-primary">Velocidad <input class="text-danger" type="text" name="velocidadOffset" size="6" value="<?php echo $velocidadOffset ?>"/>pliegos/hora</h4>
+                <h4 class="text-primary">Funcionamiento Efectivo <input class="text-danger" type="text" name="velocidadEfectivaOffset" size="4" value="<?php echo $velocidadEfectivaOffset ?>"/>%</h4>
+                <h4 class="text-primary">Arranque Cara <input class="text-danger" type="text" name="tiempoArranqueOffsetCara" size="2" value="<?php echo $tiempoArranqueOffsetCara ?>"/> minutos</h4>
+              
+    
+                <h4 class="text-primary">Tiempo de impresion <b class="text-success"><?php echo number_format($totalImpresionOffset,2); ?></b> Minutos</h4>
+                <h3 class="text-primary">TIEMPO TOTAL <b class="text-success"><?php echo number_format($tiempoTotalOffset,2); ?></b> Minutos</h3>
+                <hr>
+                <!-- Costes -->
+                <h3 class="text-primary">Laboral</h4>
+                <h4 class="text-primary">Coste Anual Oficial <input class="text-danger" type="text" name="costeOficialOffset" size="6" value="<?php echo $costeOficialOffset ?>"/>Euros Brutos</h4>
+                <h4 class="text-primary">Coste Anual Ayudante <input class="text-danger" type="text" name="costeAyudanteOffset" size="6" value="<?php echo $costeAyudanteOffset ?>"/>Euros Brutos</h4>
+                <h3 class="text-primary">COSTE LABORAL <b class="text-success"><?php echo number_format($costeLaboralOffset,2); ?></b> Euros</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-5">
+                <div id="piechart" style="width: 600px; height: 300px;"></div>
+              </div>	
+              <div class="col-md-2"></div>
+              <div class="col-md-5">
+                <h2 class="text-primary">PRECIO TOTAL <b class="text-success"><?php echo number_format($costeTotalOffset,2); ?></b> Euros</h2>
+                <hr>
+                <button type="submit" name="boton" value="=" class="btn btn-primary">Calcular</button>
+                <button type="submit" name="boton" value="reset" class="btn btn-primary">Reset</button>
+              </div>
+            </div>
+      </div>
+    </form>
+	</body>
+</html>
