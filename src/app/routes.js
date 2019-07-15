@@ -33,12 +33,19 @@ module.exports = (app, passport) => {
 			user: req.user
 		});
 	});
+	
 
 	app.get('/cliente', isLoggedIn, (req, res) => {
 		res.render('cliente', {
 			user: req.user
 		});
 	});
+
+	app.post('/cliente', passport.authenticate('local-signup', {
+		successRedirect: '/cliente',
+		failureRedirect: '/signup',
+		failureFlash: true
+	} ));
 
 	app.get('/offset', isLoggedIn, (req, res) => {
 		res.render('offset', {
