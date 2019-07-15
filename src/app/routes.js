@@ -58,7 +58,11 @@ module.exports = (app, passport) => {
 		res.redirect('/');
 	});
 
-	
+	app.get('/error', isLoggedIn, (req, res) => {
+		res.render('error', {
+			user: req.user
+		});
+	});
 
 };
 
